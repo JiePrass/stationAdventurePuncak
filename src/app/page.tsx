@@ -7,13 +7,13 @@ import CTA from "@/components/landing/CTA";
 
 export default function Home() {
   return (
-    <main className="bg-background space-y-24">
+    <>
       <HeroSection />
       <AboutSection />
       <ServiceSection />
       <PackageWisata />
       <FAQ />
       <CTA />
-    </main>
+    </>
   );
 }

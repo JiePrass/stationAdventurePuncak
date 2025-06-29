@@ -13,6 +13,7 @@
   --color-muted: #fff;
   --color-muted-foreground: #fff;
   --color-border: #e5e7eb;
+  --color-subtle: #8c8c8c;
 }
 
 body {

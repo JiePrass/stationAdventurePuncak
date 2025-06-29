@@ -50,31 +50,33 @@ const wisataList = [
     },
 ];
 
-
 export default function PackageWisata() {
     const swiperRef = useRef<SwiperClass | null>(null);
     const [query, setQuery] = useState('');
     const [autoplay, setAutoplay] = useState(true);
 
     const filteredList = useMemo(() => {
-        const hasil = wisataList.filter((item) =>
+        return wisataList.filter((item) =>
             `${item.title} ${item.label} ${item.description}`
                 .toLowerCase()
                 .includes(query.toLowerCase())
         );
-        return hasil;
     }, [query]);
 
     useEffect(() => {
-        // Matikan autoplay jika query tidak kosong
         setAutoplay(query.trim() === '');
     }, [query]);
 
     return (
-        <section className='mx-auto container'>
+        <section
+            className="mx-auto container py-16"
+            aria-labelledby="package-heading"
+        >
             <div className="flex flex-col md:flex-row justify-between items-center mb-8">
                 <div className="flex items-center gap-4 mb-4 md:mb-0">
-                    <h2 className="text-2xl font-semibold">Jelajahi Paket Wisata</h2>
+                    <h2 id="package-heading" className="text-2xl font-semibold">
+                        Jelajahi Paket Wisata
+                    </h2>
                 </div>
                 <div className="flex items-center gap-3">
                     <SearchInput
@@ -82,7 +84,7 @@ export default function PackageWisata() {
                         onChange={(val: SetStateAction<string>) => setQuery(val)}
                     />
                     <Button asChild>
-                        <Link href="/paket">
+                        <Link href="/paket" aria-label="Lihat semua paket wisata">
                             Lihat Semua
                         </Link>
                     </Button>
@@ -96,20 +98,11 @@ export default function PackageWisata() {
                 onSwiper={(swiper) => {
                     swiperRef.current = swiper;
                 }}
-                key={filteredList.length} // re-render saat list berubah
+                key={filteredList.length}
                 breakpoints={{
-                    640: {
-                        slidesPerView: 1,
-                        spaceBetween: 20,
-                    },
-                    768: {
-                        slidesPerView: 2,
-                        spaceBetween: 20,
-                    },
-                    1024: {
-                        slidesPerView: 4,
-                        spaceBetween: 24,
-                    },
+                    640: { slidesPerView: 1, spaceBetween: 20 },
+                    768: { slidesPerView: 2, spaceBetween: 20 },
+                    1024: { slidesPerView: 4, spaceBetween: 24 },
                 }}
             >
                 {filteredList.length > 0 ? (
@@ -120,28 +113,33 @@ export default function PackageWisata() {
                     ))
                 ) : (
                     <div className="text-center col-span-full py-20 text-gray-500 text-sm">
-                        Tidak ada paket yang sesuai.
+                        Tidak ada paket yang sesuai dengan pencarianmu.
                     </div>
                 )}
             </Swiper>
 
             <div className="mt-8 flex flex-col md:grid md:grid-cols-12 gap-4 md:gap-0 items-center">
-                <div className="flex items-center gap-2 justify-center md:justify-start col-span-7">
+                <div className="md:flex items-center gap-2 justify-center hidden col-span-7">
                     <button
                         onClick={() => swiperRef.current?.slidePrev()}
                         className="w-10 h-10 rounded-full border flex items-center justify-center hover:bg-gray-100"
+                        aria-label="Sebelumnya"
+                        title="Slide sebelumnya"
                     >
                         <ArrowLeft size={18} />
                     </button>
                     <button
                         onClick={() => swiperRef.current?.slideNext()}
                         className="w-10 h-10 rounded-full border flex items-center justify-center hover:bg-gray-100"
+                        aria-label="Berikutnya"
+                        title="Slide berikutnya"
                     >
                         <ArrowRight size={18} />
                     </button>
                 </div>
                 <p className="text-sm text-gray-500 text-center md:text-end col-span-5">
-                    Station Adventure Puncak menyediakan berbagai kegiatan wisata petualangan yang menawarkan pengalaman seru di alam terbuka.
+                    Station Adventure Puncak menyediakan berbagai kegiatan wisata petualangan
+                    yang menawarkan pengalaman seru di alam terbuka.
                 </p>
             </div>
         </section>
