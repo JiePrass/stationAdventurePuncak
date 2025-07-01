@@ -119,7 +119,7 @@ export default function PackageWisata() {
             </Swiper>
 
             <div className="mt-8 flex flex-col md:grid md:grid-cols-12 gap-4 md:gap-0 items-center">
-                <div className="md:flex items-center gap-2 justify-center hidden col-span-7">
+                <div className="md:flex items-center gap-2 hidden col-span-7">
                     <button
                         onClick={() => swiperRef.current?.slidePrev()}
                         className="w-10 h-10 rounded-full border flex items-center justify-center hover:bg-gray-100"

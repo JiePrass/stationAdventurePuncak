@@ -19,7 +19,7 @@ export default function Footer() {
                             width={48}
                             height={48}
                         />
-                        <h1 className="text-white font-bold text-lg">Station Adventure Puncak</h1>
+                        <span className="text-white font-bold text-lg">Station Adventure Puncak</span>
                     </div>
                     <h2 className="text-gray-300 text-2xl leading-tight">
                         Petualangan Seru di Tengah Alam Pegunungan Puncak
